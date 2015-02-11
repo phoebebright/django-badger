@@ -142,7 +142,7 @@ def detail(request, slug, format="html"):
 
     if format == 'json':
         data = badge.as_obi_serialization(request)
-        resp = HttpResponse(simplejson.dumps(data))
+        resp = HttpResponse(json.dumps(data))
         resp['Content-Type'] = 'application/json'
         return resp
     else:
@@ -292,7 +292,7 @@ def award_detail(request, slug, id, format="html"):
         return HttpResponseForbidden('Award detail forbidden')
 
     if format == 'json':
-        data = simplejson.dumps(award.as_obi_assertion(request))
+        data = json.dumps(award.as_obi_assertion(request))
         resp = HttpResponse(data)
         resp['Content-Type'] = 'application/json'
         return resp

@@ -683,8 +683,8 @@ class Badge(models.Model):
 
 
 class AwardManager(models.Manager):
-    def get_query_set(self):
-        return super(AwardManager, self).get_query_set().exclude(hidden=True)
+    def get_queryset(self):
+        return super(AwardManager, self).get_queryset().exclude(hidden=True)
 
 
 @_document_django_model

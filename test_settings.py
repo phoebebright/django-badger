@@ -120,12 +120,19 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.admin',
+    'django.contrib.admin'
+    ]
+    
+try:
+    from django.db import migrations  
+except ImportError:
+    INSTALLED_APPS += ["south"]
+    
 
-    'south',
-    'django_nose',  # has to come after south for good test-fu
+INSTALLED_APPS += ['django_nose',  # has to come after south for good test-fu
     'badger_example',
     'badger',
+    'taggit',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -152,3 +159,6 @@ LOGGING = {
 }
 
 BADGER_TEMPLATE_BASE = 'badger'
+
+ABSOLUTE_URL_OVERRIDES = { 'auth.user': lambda o: "/users/%s/" % o.username, }
+
