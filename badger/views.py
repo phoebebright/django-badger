@@ -6,7 +6,10 @@ from django.conf import settings
 from django.http import (HttpResponseRedirect, HttpResponse,
         HttpResponseForbidden, HttpResponseNotFound, Http404)
 
-from django.utils import simplejson
+try:
+    import django.utils.simplejson as json
+except ImportError:
+    import json
 
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
